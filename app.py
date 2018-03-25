@@ -1,17 +1,19 @@
 #app.py
 
-from flask import Flask, request #import main Flask class and request object
+from flask import Flask, request
 
 app = Flask(__name__) #create the Flask app
 
-@app.route('/authenticate-card')
-def get():
-    card_id = request.args.get('card_id') #if key doesn't exist, returns None
+# Authenticate a credit card and get user access to his account in the ATM client.
+@app.route('/authenticate-card', methods=['POST'])
+def authenticate_card():
+    card_id = request.args.get('card_id')
 
     return '''<h1>The card id is: {}</h1>'''.format(card_id)
 
-@app.route('/form-example')
-def form_example():
+# Check the credit card's validity, balance ,and process the payment.
+@app.route('/process-payment', methods=['POST'])
+def process_payment():
     return 'Todo...'
 
 @app.route('/json-example')
